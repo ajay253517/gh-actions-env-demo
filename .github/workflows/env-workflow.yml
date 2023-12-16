@@ -1,22 +1,28 @@
-name: Environment-Workflow
+name: Deploy-env
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
-  show-environment:
+  Build:
     runs-on: ubuntu-latest
-    environment:
-      name: dev
-      url: https://dev-test.example.com
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Deploy Environment
+      - uses: actions/checkout@v3
+      - name: Compile
+        run: echo "Running code compile"
+  DeployDev:
+    name: Deploy to Dev 
+    needs: [Build]
+    runs-on: ubuntu-latest
+    environment: 
+      name: Development
+      url: 'http://dev.myapp.com'
+    steps:
+      - name: Deploy
         run: |
           echo "Current Environment: ${{ github.event_name }}"
           echo "Deployment Environment: ${{ environment.name }}"
           echo "Environment URL: ${{ environment.url }}"
-          echo "Secret Value: ${{ environment.variables.API-KEY }}"
         env:
            API-KEY: ${{ secrets.DEV_API_KEY }}
