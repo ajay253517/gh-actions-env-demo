@@ -15,8 +15,7 @@ jobs:
     name: Deploy to Dev 
     needs: [Build]
     runs-on: ubuntu-latest
-    environment: 
-      name: dev
+    environment: dev
     steps:
       - name: Deploy
         run: |
