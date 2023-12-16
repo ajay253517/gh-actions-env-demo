@@ -15,11 +15,14 @@ jobs:
     name: Deploy to Dev 
     needs: [Build]
     runs-on: ubuntu-latest
-    environment: dev
+    environment:
+      name: dev
+      url: ${{ variables.DEV_URL }}
     steps:
       - name: Deploy
         run: |
           echo "Current Environment: ${{ github.event_name }}"
           echo "Starting deployment on dev"
+          echo "Deployed to $url"
         env:
            API-KEY: ${{ secrets.DEV_API_KEY }}
