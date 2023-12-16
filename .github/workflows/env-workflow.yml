@@ -21,6 +21,5 @@ jobs:
         run: |
           echo "Current Environment: ${{ github.event_name }}"
           echo "Deployment Environment: ${{ environment.name }}"
-          echo "Environment URL: ${{ environment.url }}"
         env:
            API-KEY: ${{ secrets.DEV_API_KEY }}
