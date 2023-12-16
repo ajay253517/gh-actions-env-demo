@@ -1,0 +1,22 @@
+name: Dev-Environment-Workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  dev-deployment:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: https://dev-example.com
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Dev Deployment 
+        run: |
+          echo "Current Environment: ${{ github.event_name }}"
+          echo "Deployment Environment: ${{ environment.name }}"
+          echo "Environment URL: ${{ environment.url }}"
+          echo "Secret Value: ${{ environment.variables.API-KEY }}"
+        env:
+           API-KEY: ${{ secrets.DEV_API_KEY }}
