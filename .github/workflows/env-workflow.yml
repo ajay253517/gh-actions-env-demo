@@ -20,6 +20,6 @@ jobs:
       - name: Deploy
         run: |
           echo "Current Environment: ${{ github.event_name }}"
-          echo "Deployment Environment: ${{ environment.name }}"
+          echo "Starting deployment on dev"
         env:
            API-KEY: ${{ secrets.DEV_API_KEY }}
