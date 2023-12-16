@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: ${{ variables.DEV_URL }}
+      url: https://dev-example-app.com
     steps:
       - name: Deploy
         run: |
